@@ -1,5 +1,14 @@
 #!/bin/bash
-tmux new-session -d -s rs2 -x "$(tput cols)" -y "$(tput lines)"
+SESSION="rs2"
+
+tmux has-session -t $SESSION 2>/dev/null
+
+if [ $? == 0 ]; then
+  tmux attach -t $SESSION
+  exit 0
+fi
+
+tmux new-session -d -s $SESSION -x "$(tput cols)" -y "$(tput lines)"
 
 tmux split-window -h -p 33
 
@@ -15,4 +24,4 @@ tmux send-keys "cd ~/src/rSW/robot/rs2/webui/frontend && VITE_BACKEND_URL=http:/
 tmux select-pane -t 2
 tmux send-keys "cd ~/src/rSW" C-m
 
-tmux attach -t rs2
+tmux attach -t $SESSION
