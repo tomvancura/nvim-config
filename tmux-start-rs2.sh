@@ -16,12 +16,19 @@ tmux select-pane -t 0
 tmux send-keys "cd ~/src/rSW/robot/rs2 && nvim ." C-m
 
 tmux select-pane -t 1
-tmux split-window -v -p 90
+tmux split-window -v -p 60
 
 tmux select-pane -t 1
-tmux send-keys "cd ~/src/rSW/robot/rs2/webui/frontend && VITE_BACKEND_URL=http://localhost:4000 npm run dev" C-m
+tmux send-keys "claude" C-m
 
 tmux select-pane -t 2
 tmux send-keys "cd ~/src/rSW" C-m
+
+# Create new window for npm command
+tmux new-window -n "frontend"
+tmux send-keys "cd ~/src/rSW/robot/rs2/webui/frontend && VITE_BACKEND_URL=http://localhost:4000 npm run dev" C-m
+
+# Return to the first window
+tmux select-window -t 0
 
 tmux attach -t $SESSION
