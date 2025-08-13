@@ -19,7 +19,7 @@ tmux select-pane -t 1
 tmux split-window -v -p 60
 
 tmux select-pane -t 1
-tmux send-keys "claude" C-m
+tmux send-keys "cd ~/src/rSW && claude" C-m
 
 tmux select-pane -t 2
 tmux send-keys "cd ~/src/rSW" C-m
