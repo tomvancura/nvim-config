@@ -10,13 +10,13 @@ fi
 
 tmux new-session -d -s $SESSION -x "$(tput cols)" -y "$(tput lines)"
 
-tmux split-window -h -p 33
+tmux split-window -h -l 33%
 
 tmux select-pane -t 0
 tmux send-keys "cd ~/src/rSW/robot/rs2 && nvim ." C-m
 
 tmux select-pane -t 1
-tmux split-window -v -p 60
+tmux split-window -v -l 60%
 
 tmux select-pane -t 1
 tmux send-keys "cd ~/src/rSW && claude" C-m
