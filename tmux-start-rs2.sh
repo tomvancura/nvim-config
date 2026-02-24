@@ -24,7 +24,10 @@ tmux send-keys "cd ~/src/rSW && claude" C-m
 tmux select-pane -t 2
 tmux send-keys "cd ~/src/rSW" C-m
 
-# Create new window for npm command
+# Create claude grid window (window 1)
+TMUX_CLAUDE_NEW_WINDOW=1 source ~/.config/nvim/tmux-claude-grid.sh
+
+# Create frontend window (window 2)
 tmux new-window -n "frontend"
 tmux send-keys "cd ~/src/rSW/robot/rs2/webui/frontend && VITE_BACKEND_URL=http://localhost:4000 npm run dev" C-m
 
