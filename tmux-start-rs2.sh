@@ -24,12 +24,17 @@ tmux send-keys "cd ~/src/rSW && claude" C-m
 tmux select-pane -t 2
 tmux send-keys "cd ~/src/rSW" C-m
 
-# Create claude grid window (window 1)
-TMUX_CLAUDE_NEW_WINDOW=1 source ~/.config/nvim/tmux-claude-grid.sh
+# Window 1: claude - 2x2 grid of claude sessions
+TMUX_GRID_NEW_WINDOW=1 source ~/.config/nvim/tmux-worktree-grid.sh claude claude
 
-# Create frontend window (window 2)
-tmux new-window -n "frontend"
-tmux send-keys "cd ~/src/rSW/robot/rs2/webui/frontend && VITE_BACKEND_URL=http://localhost:4000 npm run dev" C-m
+# Window 2: bash - 2x2 grid of shells in worktree roots
+TMUX_GRID_NEW_WINDOW=1 source ~/.config/nvim/tmux-worktree-grid.sh bash
+
+# Window 3: nvim - 2x2 grid of nvim in worktree roots
+TMUX_GRID_NEW_WINDOW=1 source ~/.config/nvim/tmux-worktree-grid.sh nvim "nvim ."
+
+# Window 4: dev.sh - 2x2 grid running dev.sh from webui
+TMUX_GRID_NEW_WINDOW=1 source ~/.config/nvim/tmux-worktree-grid.sh dev.sh "cd robot/rs2/webui && ./dev.sh"
 
 # Return to the first window
 tmux select-window -t 0
